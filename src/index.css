@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --primary: 34 20% 49%; /* #957F63 */
+    --secondary: 240 1% 15%; /* #252526 */
+
+    /* State Colors */
+    --success: 122 39% 49%; /* #4CAF50 */
+    --info: 207 90% 54%; /* #2196F3 */
+    --warning: 36 100% 50%; /* #FF9800 */
+    --pending: 45 100% 51%; /* #FFC107 */
+    --danger: 4 90% 58%; /* #F44336 */
+
+    /* Neutral Colors */
+    --light: 0 0% 100%; /* #FFFFFF */
+    --dark: 0 0% 0%;
+  }
+}
+body {
+  background-color: #252526;
+}
+@font-face {
+  font-family: Jaguar;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("./assets/fonts/Jaguar.woff") format("woff2");
+}
+@font-face {
+  font-family: MrDeHaviland-Regular;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("./assets/fonts/MrDeHaviland-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: Poppins-Regular;
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@theme {
+  --font-Heading: "Jaguar", sans-sarif;
+  --font-Signature: "MrDeHaviland-Regular", sans-sarif;
+  --font-Text: "Poppins-Regular", sans-sarif;
+
+  --color-primary: hsl(var(--primary));
+  --color-secondary: hsl(var(--secondary));
+  --color-success: hsl(var(--success));
+  --color-info: hsl(var(--info));
+  --color-warning: hsl(var(--warning));
+  --color-pending: hsl(var(--pending));
+  --color-danger: hsl(var(--danger));
+  --color-light: hsl(var(--light));
+  --color-dark: hsl(var(--dark));
+}
+
+.about-wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* .parallax-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh;
+  background-image: ../;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+} */
+
+.about-us-content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 1;
+  position: relative;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Preloader wrapper */
+.preloader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0%;
+  right: 0;
+  z-index: 9999;
+  background-color: #957F63; /* fallback white */
+  /* transition-duration: 1s; */
+  /* transition-timing-function: cubic-bezier(0.86, 0, 0.09, 1); */
+}
+
+/* Slide up animation when page is loaded
+.page-loaded .preloader {
+  top: -100%;
+} */
+
+/* Loading Text Animation */
+.loading-text {
+  font-size: 5vw;
+  line-height: 64px;
+  letter-spacing: 10px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.loading-text span {
+  animation: moveLetters 2.4s infinite ease-in-out;
+  transform: translateX(0);
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  color: #fff;
+  text-shadow: 0px 2px 10px rgba(46, 74, 81, 0.3);
+}
+
+/* Individual animation delays */
+.loading-text span:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.loading-text span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loading-text span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.loading-text span:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.loading-text span:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.loading-text span:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.loading-text span:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+/* Keyframes for text motion */
+@keyframes moveLetters {
+  0% {
+    transform: translateX(-15vw);
+    opacity: 0;
+  }
+  33.3%,
+  66% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(15vw);
+    opacity: 0;
+  }
+}
