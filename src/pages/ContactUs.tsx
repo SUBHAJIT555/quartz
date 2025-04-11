@@ -54,7 +54,7 @@ const ContactUs = () => {
       const result = await response.json();
       if (result.status === "success") {
         setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", phone: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "", formType: "contact" });
       } else {
         setStatus("Failed: " + result.message);
       }
