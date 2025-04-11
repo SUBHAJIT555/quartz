@@ -29,6 +29,7 @@ const ContactUs = () => {
     email: "",
     phone: "",
     message: "",
+    formType: "contact",
   });
 
   const [status, setStatus] = useState("");
