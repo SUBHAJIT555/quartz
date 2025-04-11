@@ -75,7 +75,9 @@ const ContactUs = () => {
         />
         <div className="relative z-10 flex items-center justify-end h-full bg-black/50 pr-20">
           <div className="text-white text-right max-w-2xl">
-            <h1 className="font-Heading text-5xl md:text-7xl leading-tight">Contact Us</h1>
+            <h1 className="font-Heading text-5xl md:text-7xl leading-tight">
+              Contact Us
+            </h1>
             <p className="font-Text text-xl md:text-2xl mt-4">
               We’d love to hear from you
               <span className="font-Signature text-primary text-5xl md:text-6xl ml-2">
@@ -113,15 +115,20 @@ const ContactUs = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Form */}
           <div className="space-y-8">
-            <h2 className="text-3xl md:text-4xl font-Heading mb-2">Send Us a Message</h2>
+            <h2 className="text-3xl md:text-4xl font-Heading mb-2">
+              Send Us a Message
+            </h2>
             <p className="text-white/70 text-lg mb-8">
-              Whether you're ready to invest or just exploring your options, we’re here to help.
+              Whether you're ready to invest or just exploring your options,
+              we’re here to help.
             </p>
             <div className="w-[70px] h-1 bg-white"></div>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-white/70 mb-2 font-Text">Full Name</label>
+                <label className="block text-white/70 mb-2 font-Text">
+                  Full Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -133,7 +140,9 @@ const ContactUs = () => {
                 />
               </div>
               <div>
-                <label className="block text-white/70 mb-2 font-Text">Email Address</label>
+                <label className="block text-white/70 mb-2 font-Text">
+                  Email Address
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -145,7 +154,9 @@ const ContactUs = () => {
                 />
               </div>
               <div>
-                <label className="block text-white/70 mb-2 font-Text">Contact Number</label>
+                <label className="block text-white/70 mb-2 font-Text">
+                  Contact Number
+                </label>
                 <input
                   type="tel"
                   name="phone"
@@ -156,7 +167,9 @@ const ContactUs = () => {
                 />
               </div>
               <div>
-                <label className="block text-white/70 mb-2 font-Text">Message</label>
+                <label className="block text-white/70 mb-2 font-Text">
+                  Message
+                </label>
                 <textarea
                   name="message"
                   rows={5}
@@ -192,7 +205,8 @@ const ContactUs = () => {
               Let’s Start a Conversation
             </h3>
             <p className="text-white/70 text-lg mb-6">
-              We’re here to guide your financial journey with clarity and confidence.
+              We’re here to guide your financial journey with clarity and
+              confidence.
             </p>
 
             <div className="space-y-6 text-white/90 text-base font-Text">
@@ -201,9 +215,10 @@ const ContactUs = () => {
               <div className="mb-8 rounded-xl overflow-hidden border border-white/10">
                 <iframe
                   title="Company Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.0032220917786!2d73.8966674!3d18.4732608"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.0032220917786!2d73.8966674!3d18.4732608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ea6f0b41a257%3A0xcef2546d5e1b3c1!2sClover%20Highlands!5e0!3m2!1sen!2sin!4v1712822630993!5m2!1sen!2sin"
                   width="100%"
                   height="200"
+                  allowFullScreen
                   loading="lazy"
                   className="w-full h-56"
                   style={{ border: 0 }}
@@ -217,7 +232,8 @@ const ContactUs = () => {
                   <p className="text-white/80">
                     Clover Highlands, NIBM Road,
                     <br />
-                    Pune, Maharashtra<br />
+                    Pune, Maharashtra
+                    <br />
                     India 411048.
                   </p>
                 </div>
