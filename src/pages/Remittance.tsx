@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 
 import remittanceHero from "../assets/images/remittance/Remittance_img.webp";
 import investment from "../assets/images/remittance/Invest_Internationally_The_Right_Way_01.webp";
+import { Link } from "react-router-dom";
 
 const Remittance: React.FC = () => {
   const ref = useRef(null);
@@ -109,7 +110,6 @@ const Remittance: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            
             <div className="relative z-10 overflow-hidden shadow-xl border border-white/10">
               <motion.img
                 src={investment}
@@ -146,16 +146,18 @@ const Remittance: React.FC = () => {
             for you. Take the first step toward your financial future.
           </p>
 
-          <Button className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden">
-            <span className="inline-block transition-all duration-300 group-hover:pr-6">
-              Schedule a Consultation
-            </span>
+          <Link to="/ContactUs">
+            <Button className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden">
+              <span className="inline-block transition-all duration-300 group-hover:pr-6">
+                Schedule a Consultation
+              </span>
 
-            <ArrowUpRight
-              className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-              size={16}
-            />
-          </Button>
+              <ArrowUpRight
+                className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                size={16}
+              />
+            </Button>
+          </Link>
         </motion.div>
       </motion.div>
       <div
