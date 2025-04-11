@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Footer from "../components/Footer";
 import Button from "../components/ui/Button";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
@@ -33,16 +33,56 @@ const FinancialEducation = () => {
     },
   };
 
-  // const fadeIn = {
-  //   hidden: { opacity: 0 },
-  //   show: {
-  //     opacity: 1,
-  //     transition: { duration: 0.8, ease: "easeInOut" },
-  //   },
-  // };
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    interest: "Investor Training Programs",
+    message: "",
+    formType: "education",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    try {
+      const response = await fetch("https://qf-advisory.com/mailer.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      const result = await response.json();
+      if (result.status === "success") {
+        setStatus("Thank you! We’ve received your registration.");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          interest: "Investor Training Programs",
+          message: "",
+          formType: "education",
+        });
+      } else {
+        setStatus("Failed: " + result.message);
+      }
+    } catch (err) {
+      setStatus("Something went wrong.");
+    }
+  };
+
   return (
     <>
-      {/* Hero Section with Parallax */}
+      {/* Hero Section */}
       <section ref={ref} className="relative h-[100vh] overflow-hidden">
         <motion.img
           src={educationHero}
@@ -65,6 +105,7 @@ const FinancialEducation = () => {
         </div>
       </section>
 
+      {/* Intro Line */}
       <motion.div
         className="w-full bg-secondary"
         variants={fadeInUp}
@@ -73,13 +114,14 @@ const FinancialEducation = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <h2 className="text-white font-Heading text-3xl md:text-[2vw] pt-16 pb-16 text-center tracking-wide">
-          World-class financial education,{" "}
+          World-class financial education,
           <span className="font-Signature text-primary text-7xl">
             &nbsp;absolutely free
           </span>
         </h2>
       </motion.div>
-      {/* Investor Training Program Section */}
+
+      {/* Investor Training Section */}
       <motion.section
         className="bg-primary text-white py-24 px-6 md:px-20"
         initial="hidden"
@@ -88,7 +130,6 @@ const FinancialEducation = () => {
         variants={fadeInUp}
       >
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-          {/* Left: Text */}
           <div className="lg:w-1/2">
             <h3 className="font-Heading text-3xl md:text-4xl mb-4 flex items-center gap-2">
               <img
@@ -98,7 +139,6 @@ const FinancialEducation = () => {
               />
               Investor Training Programs
             </h3>
-
             <div className="w-1/2 h-px bg-white mb-4"></div>
             <p className="font-Text text-white/80 text-lg leading-relaxed">
               Master the fundamentals of investing in global markets. Our
@@ -109,14 +149,9 @@ const FinancialEducation = () => {
             <p className="font-Text text-white/80 text-lg leading-relaxed mt-4">
               You'll learn about different asset classes such as stocks, ETFs,
               mutual funds, and bonds, as well as concepts like risk management,
-              diversification, and long-term strategy. Whether you're investing
-              for personal goals or building wealth for the future, this program
-              equips you with the knowledge to make smart, informed decisions in
-              any market condition.
+              diversification, and long-term strategy.
             </p>
           </div>
-
-          {/* Right: Image with offset border effect */}
           <motion.div
             className="lg:w-1/2 relative"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -124,10 +159,7 @@ const FinancialEducation = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Offset Border */}
             <div className="absolute top-6 left-6 w-full h-full border border-white/20 z-0" />
-
-            {/* Image */}
             <div className="relative z-10 overflow-hidden shadow-xl border border-white/10">
               <img
                 src={investor}
@@ -147,7 +179,6 @@ const FinancialEducation = () => {
         variants={fadeInUp}
       >
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-          {/* Left: Image with offset border */}
           <motion.div
             className="lg:w-1/2 relative"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -155,11 +186,8 @@ const FinancialEducation = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Offset Border */}
             <div className="absolute top-6 left-6 w-full h-full border border-white/20 z-0 " />
-
-            {/* Image */}
-            <div className="relative z-10 overflow-hidden  shadow-xl border border-white/10">
+            <div className="relative z-10 overflow-hidden shadow-xl border border-white/10">
               <img
                 src={tradingWorkshop}
                 alt="Trading Workshops"
@@ -168,7 +196,6 @@ const FinancialEducation = () => {
             </div>
           </motion.div>
 
-          {/* Right: Text */}
           <div className="lg:w-1/2">
             <h3 className="font-Heading text-3xl md:text-4xl mb-4 flex items-center gap-2">
               <img
@@ -187,13 +214,12 @@ const FinancialEducation = () => {
             <p className="font-Text text-white/80 text-lg leading-relaxed mt-4">
               Through interactive sessions, simulated trades, and strategy
               breakdowns, you’ll learn how to read charts, interpret technical
-              indicators, manage risk, and spot high-probability setups. Perfect
-              for aspiring traders who want to gain real-world insights and
-              experience-driven confidence.
+              indicators, manage risk, and spot high-probability setups.
             </p>
           </div>
         </div>
       </motion.section>
+
       {/* Live Seminars with Experts Section */}
       <motion.section
         className="bg-primary text-white py-24 px-6 md:px-20"
@@ -203,7 +229,6 @@ const FinancialEducation = () => {
         variants={fadeInUp}
       >
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-          {/* Left: Text */}
           <div className="lg:w-1/2">
             <h3 className="font-Heading text-3xl md:text-4xl mb-4 flex items-center gap-2">
               <img src={liveLogo} alt="Training Icon" className="w-10 h-10" />
@@ -220,12 +245,10 @@ const FinancialEducation = () => {
             </p>
             <p className="font-Text text-white/80 text-lg leading-relaxed mt-4">
               These sessions are built to be interactive, allowing you to ask
-              questions, discuss current trends, and gain clarity on complex
-              financial topics — all in a live, dynamic environment.
+              questions and gain clarity on complex financial topics.
             </p>
           </div>
 
-          {/* Right: Image with offset border */}
           <motion.div
             className="lg:w-1/2 relative"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -244,6 +267,7 @@ const FinancialEducation = () => {
           </motion.div>
         </div>
       </motion.section>
+
       {/* Platform & Tools Training Section */}
       <motion.section
         className="bg-primary text-white py-24 px-6 md:px-20"
@@ -253,7 +277,6 @@ const FinancialEducation = () => {
         variants={fadeInUp}
       >
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-          {/* Left: Image with offset border */}
           <motion.div
             className="lg:w-1/2 relative"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -271,7 +294,6 @@ const FinancialEducation = () => {
             </div>
           </motion.div>
 
-          {/* Right: Text */}
           <div className="lg:w-1/2">
             <h3 className="font-Heading text-3xl md:text-4xl mb-4 flex items-center gap-2">
               <img src={toolLogo} alt="Training Icon" className="w-10 h-10" />
@@ -280,20 +302,18 @@ const FinancialEducation = () => {
             <div className="w-1/2 h-px bg-white mb-4"></div>
             <p className="font-Text text-white/80 text-lg leading-relaxed">
               Get skilled in the tools professionals use to trade and invest.
-              Gain hands-on experience with the platforms and software used by
-              experts — including MetaTrader (MT4/MT5), TradingView, Bloomberg
-              Terminal, and more.
+              Gain hands-on experience with platforms like MetaTrader, TradingView,
+              and Bloomberg Terminal.
             </p>
             <p className="font-Text text-white/80 text-lg leading-relaxed mt-4">
-              From order execution to portfolio tracking and technical analysis,
-              this training ensures you’re not just financially informed —
-              you’re also technically equipped to navigate the markets like a
-              pro.
+              From execution to portfolio tracking and technical analysis,
+              this training equips you to navigate markets like a pro.
             </p>
           </div>
         </div>
       </motion.section>
-      {/* Parallax Transition Image Section */}
+
+      {/* Parallax Section */}
       <section ref={ref} className="relative h-[70vh] overflow-hidden">
         <motion.img
           src={parallaxTwo}
@@ -329,94 +349,112 @@ const FinancialEducation = () => {
             program. A confirmation email will be sent shortly after.
           </p>
 
-          <form className="space-y-6">
-            {/* Full Name */}
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block font-Text mb-2 text-white/70">
                 Full Name
               </label>
               <input
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 type="text"
                 placeholder="Your full name"
+                required
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
-            {/* Email */}
             <div>
               <label className="block font-Text mb-2 text-white/70">
                 Email Address
               </label>
               <input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 type="email"
                 placeholder="you@example.com"
+                required
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
-            {/* Phone Number */}
             <div>
               <label className="block font-Text mb-2 text-white/70">
                 Phone Number
               </label>
               <input
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 type="tel"
                 placeholder="+971-50-123-4567"
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
 
-            {/* Area of Interest */}
             <div>
               <label className="block font-Text mb-2 text-white/70">
                 Area of Interest
               </label>
-              <select className="w-full px-4 py-3 bg-white/10 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-300 hover:bg-primary hover:text-white">
-                <option className="text-black">
-                  Investor Training Programs
-                </option>
+              <select
+                name="interest"
+                value={formData.interest}
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-white/10 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-300 hover:bg-primary hover:text-white"
+              >
+                <option className="text-black">Investor Training Programs</option>
                 <option className="text-black">Trading Workshops</option>
                 <option className="text-black">Live Seminars</option>
-                <option className="text-black">
-                  Platform & Tools Training
-                </option>
+                <option className="text-black">Platform & Tools Training</option>
               </select>
             </div>
 
-            {/* Optional Message */}
             <div>
               <label className="block font-Text mb-2 text-white/70">
                 Message (Optional)
               </label>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 rows={4}
                 placeholder="Any additional notes or questions..."
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
               ></textarea>
             </div>
 
-            {/* Submit Button */}
             <div className="flex justify-center">
-              <Button className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden">
+              <Button
+                type="submit"
+                className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden"
+              >
                 <span className="inline-block transition-all duration-300 group-hover:pr-6">
                   Submit Registration
                 </span>
-
                 <ArrowUpRight
                   className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
                   size={16}
                 />
               </Button>
             </div>
+
+            {status && (
+              <p className="text-white/80 text-center mt-6">{status}</p>
+            )}
           </form>
         </div>
       </motion.section>
+
+      {/* Scroll to Top */}
       <div
         className="fixed bottom-6 right-6 z-50 bg-primary text-white p-3 rounded-full shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         <ArrowUp className="w-5 h-5" />
       </div>
+
       <Footer />
     </>
   );
