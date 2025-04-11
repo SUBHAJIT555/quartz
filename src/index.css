@@ -22,18 +22,18 @@ body {
   background-color: #252526;
 }
 @font-face {
-  font-family: Jaguar;
+  font-family: Colgent;
   font-style: normal;
   font-weight: 200 700;
   font-display: swap;
-  src: url("./assets/fonts/Jaguar.woff") format("woff2");
+  src: url("./assets/fonts/Colgent.ttf") format("truetype");
 }
 @font-face {
-  font-family: MrDeHaviland-Regular;
+  font-family: Bellazio;
   font-style: normal;
   font-weight: 200 700;
   font-display: swap;
-  src: url("./assets/fonts/MrDeHaviland-Regular.ttf") format("truetype");
+  src: url("./assets/fonts/Bellazio.ttf") format("truetype");
 }
 @font-face {
   font-family: Poppins-Regular;
@@ -44,8 +44,8 @@ body {
 }
 
 @theme {
-  --font-Heading: "Jaguar", sans-sarif;
-  --font-Signature: "MrDeHaviland-Regular", sans-sarif;
+  --font-Heading: "Colgent", sans-sarif;
+  --font-Signature: "Bellazio", sans-sarif;
   --font-Text: "Poppins-Regular", sans-sarif;
 
   --color-primary: hsl(var(--primary));
