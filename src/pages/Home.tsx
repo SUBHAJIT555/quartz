@@ -321,7 +321,7 @@ const Home: React.FC = () => {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: true, amount: 0.3 }}
                   />
-                  <div className="absolute bottom-[-20px] right-[-20px] w-full h-full border border-white/50 z-0" />
+                  <div className="absolute bottom-[-20px] right-[-10px] md:right-[-12px] xl:right-[-20px] w-full h-full border border-white/50 z-0" />
                 </div>
               </div>
 

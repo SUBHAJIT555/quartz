@@ -14,8 +14,19 @@ import tradingWorkshop from "../assets/images/education/Trading_Workshops.webp";
 import liveSeminar from "../assets/images/education/Live_Seminars.webp";
 import platform from "../assets/images/education/Platform_and_Tools_Training.webp";
 import parallaxTwo from "../assets/images/education/Empower_Your_Financial_Journey.webp";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  interest: string;
+  message: string;
+};
 
 const FinancialEducation = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -33,52 +44,46 @@ const FinancialEducation = () => {
     },
   };
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interest: "Investor Training Programs",
-    message: "",
-    formType: "education",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>();
 
-  const [status, setStatus] = useState("");
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("Sending...");
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setLoading(true);
+    const formData = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      interest: data.interest,
+      message: data.message ? data.message : "No message",
+      formType: "education",
+    };
 
     try {
-      const response = await fetch("https://qf-advisory.com/mailer.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
-      });
+      const response = await fetch(
+        "http://localhost:3000/api/v1/email/send-email",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        }
+      );
 
       const result = await response.json();
       if (result.status === "success") {
-        setStatus("Thank you! We’ve received your registration.");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          interest: "Investor Training Programs",
-          message: "",
-          formType: "education",
-        });
+        toast.success("Registration Request Sent.");
+        reset();
       } else {
-        setStatus("Failed: " + result.message);
+        toast.error("Failed to send registration request.");
       }
     } catch (err) {
-      setStatus("Something went wrong.");
+      toast.error("Failed to send registration request.");
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -351,20 +356,23 @@ const FinancialEducation = () => {
             program. A confirmation email will be sent shortly after.
           </p>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label className="block font-Text mb-2 text-white/70">
                 Full Name
               </label>
               <input
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                {...register("name", { required: "Name is required" })}
                 type="text"
                 placeholder="Your full name"
                 required
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
 
             <div>
@@ -372,14 +380,23 @@ const FinancialEducation = () => {
                 Email Address
               </label>
               <input
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Invalid email address",
+                  },
+                })}
                 type="email"
                 placeholder="you@example.com"
                 required
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
 
             <div>
@@ -387,13 +404,23 @@ const FinancialEducation = () => {
                 Phone Number
               </label>
               <input
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
+                {...register("phone", {
+                  required: "Phone number is required",
+                  pattern: {
+                    value: /^\+971\d{9}$/,
+                    message: "Invalid phone number",
+                  },
+                })}
                 type="tel"
+                maxLength={13}
                 placeholder="+971-50-123-4567"
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
-              />
+              />{" "}
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.phone.message}
+                </p>
+              )}
             </div>
 
             <div>
@@ -401,20 +428,33 @@ const FinancialEducation = () => {
                 Area of Interest
               </label>
               <select
-                name="interest"
-                value={formData.interest}
-                onChange={handleChange}
+                {...register("interest", { required: "Interest is required" })}
                 className="w-full px-4 py-3 bg-white/10 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-300 hover:bg-primary hover:text-white"
               >
-                <option className="text-black">
+                <option
+                  className="text-black"
+                  value={"Investor Training Programs"}
+                >
                   Investor Training Programs
                 </option>
-                <option className="text-black">Trading Workshops</option>
-                <option className="text-black">Live Seminars</option>
-                <option className="text-black">
+                <option className="text-black" value={"Trading Workshops"}>
+                  Trading Workshops
+                </option>
+                <option className="text-black" value={"Live Seminars"}>
+                  Live Seminars
+                </option>
+                <option
+                  className="text-black"
+                  value={"Platform & Tools Training"}
+                >
                   Platform & Tools Training
                 </option>
               </select>
+              {errors.interest && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.interest.message}
+                </p>
+              )}
             </div>
 
             <div>
@@ -422,9 +462,7 @@ const FinancialEducation = () => {
                 Message (Optional)
               </label>
               <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
+                {...register("message")}
                 rows={4}
                 placeholder="Any additional notes or questions..."
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-primary"
@@ -446,9 +484,9 @@ const FinancialEducation = () => {
               </Button>
             </div>
 
-            {status && (
+            {/* {status && (
               <p className="text-white/80 text-center mt-6">{status}</p>
-            )}
+            )} */}
           </form>
         </div>
       </motion.section>

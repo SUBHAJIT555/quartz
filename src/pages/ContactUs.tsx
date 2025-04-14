@@ -5,6 +5,15 @@ import Footer from "../components/Footer";
 import Button from "../components/ui/Button";
 import contactHero from "../assets/images/insight/Contact_img.webp";
 import companyLogo from "../assets/images/logo/QuartzDark.webp";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
 
 const ContactUs = () => {
   const ref = useRef(null);
@@ -24,50 +33,52 @@ const ContactUs = () => {
     },
   };
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    formType: "contact",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>();
 
-  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("Sending...");
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setLoading(true);
+
+    const formData = {
+      ...data,
+      formType: "contact",
+    };
 
     try {
-      const response = await fetch("http://localhost:3000/api/v1/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(formData).toString(),
-      });
+      const response = await fetch(
+        "http://localhost:3000/api/v1/email/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(formData).toString(),
+        }
+      );
 
       const result = await response.json();
       if (result.status === "success") {
-        setStatus("Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-          formType: "contact",
-        });
+        // setStatus("Message sent successfully!");
+        toast.success("Message sent successfully!");
+        reset();
       } else {
-        setStatus("Failed: " + result.message);
+        toast.error("Failed to send message.");
+
+        console.error("Error sending message:");
       }
     } catch (err) {
-      setStatus("Error sending message.");
+      toast.error("Failed to send message.");
+      console.error("Error sending message:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -132,20 +143,23 @@ const ContactUs = () => {
             </p>
             <div className="w-[70px] h-1 bg-white"></div>
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label className="block text-white/70 mb-2 font-Text">
                   Full Name
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  {...register("name", { required: "Name is required" })}
                   placeholder="Enter your name"
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 font-Text focus:outline-none focus:ring-2 focus:ring-secondary"
                   required
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-white/70 mb-2 font-Text">
@@ -153,13 +167,22 @@ const ContactUs = () => {
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Invalid email address",
+                    },
+                  })}
                   placeholder="username@domain.com"
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 font-Text focus:outline-none focus:ring-2 focus:ring-secondary"
                   required
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-white/70 mb-2 font-Text">
@@ -167,42 +190,74 @@ const ContactUs = () => {
                 </label>
                 <input
                   type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="+91 1234567890"
+                  {...register("phone", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^\+971\d{9}$/,
+                      message: "Invalid phone number",
+                    },
+                  })}
+                  maxLength={13}
+                  placeholder="+971-50-123-4567"
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white font-Text placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-secondary"
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
               <div>
                 <label className="block text-white/70 mb-2 font-Text">
                   Message
                 </label>
                 <textarea
-                  name="message"
+                  {...register("message", {
+                    required: "Message is required",
+                    minLength: {
+                      value: 10,
+                      message: "Message must be at least 10 characters",
+                    },
+                  })}
                   rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
                   placeholder="Your message..."
                   className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white font-Text placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-secondary"
                   required
                 ></textarea>
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.message.message}
+                  </p>
+                )}
               </div>
 
               <Button
                 type="submit"
                 className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden"
               >
-                <span className="inline-block transition-all duration-300 group-hover:pr-6">
-                  Send
-                </span>
-                <ArrowUpRight
-                  className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                  size={16}
-                />
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <p>Sending</p>
+                    <div className="flex items-center gap-1">
+                      <span className="dot-animation"></span>
+                      <span className="dot-animation"></span>
+                      <span className="dot-animation"></span>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <span className="inline-block transition-all duration-300 group-hover:pr-6">
+                      Send
+                    </span>
+                    <ArrowUpRight
+                      className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                      size={16}
+                    />
+                  </>
+                )}
               </Button>
 
-              <p className="text-white/80 mt-4">{status}</p>
+              {/* <p className="text-white/80 mt-4">{status}</p> */}
             </form>
           </div>
 
@@ -242,7 +297,7 @@ const ContactUs = () => {
                     <br />
                     Pune, Maharashtra
                     <br />
-                    India 411048.
+                    India 411048.
                   </p>
                 </div>
               </div>

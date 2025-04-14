@@ -50,12 +50,12 @@ const Navbar = () => {
       <div className="flex justify-center">
         {/* Navbar */}
         <nav
-          className={`fixed top-0 w-11/12 mx-auto md:w-full z-30 transition-all duration-300 `}
+          className={`fixed top-0 w-11/12 mx-auto xl:w-full z-30 transition-all duration-300 `}
         >
           <motion.div
             variants={{
               visible: { y: 0 },
-              hidden: { y: "-130%" },
+              hidden: { y: "-140%" },
             }}
             animate={hidden ? "hidden" : "visible"}
             transition={{ duration: 0.35, ease: "easeInOut" }}
@@ -106,10 +106,10 @@ const Navbar = () => {
       {/* Menu panel that slides up from below */}
       <motion.div
         initial={{ y: "100vh" }}
-        animate={isMenuOpen ? { y: "calc(100vh - 100%)" } : { y: "100vh" }}
+        animate={isMenuOpen ? { y: "calc(100dvh - 110%)" } : { y: "100vh" }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         className={`fixed bottom-0 left-0 right-0 z-30 bg-primary/70 backdrop-blur-md shadow-lg  rounded-t-4xl overflow-hidden`}
-        style={{ height: "calc(100vh - 90px)" }}
+        style={{ height: "calc(100dvh - 10dvh)" }}
       >
         {/* Centered menu items */}
         <div className="h-full flex flex-col justify-center items-center">
