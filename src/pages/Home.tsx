@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Hero from "../components/Hero";
+// import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import Button from "../components/ui/Button";
 import who from "../assets/images/homeImages/who-we-are.jpg";
@@ -8,6 +8,8 @@ import why from "../assets/images/homeImages/why_choose_us.jpg";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Preloader from "../components/ui/Preloader";
+import herocontent from "../assets/images/homeImages/homeHeroContent.webp";
+import herovideo from "../assets/images/homeImages/heroVideo.webm";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 100 },
@@ -139,7 +141,23 @@ const Home: React.FC = () => {
 
       {/* Main Content */}
       <main className={`${loading ? "hidden" : "block"}`}>
-        <Hero />
+        {/* <Hero /> */}
+
+        <section className="relative h-screen w-full ">
+          {/* Background Video */}
+          <video
+            className="absolute top-0 left-0 h-full w-full object-cover z-10"
+            src={herovideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+
+          <div className="absolute top-[30%] left-[10%] z-20 h-[125px] w-[230px] md:h-[170px] md:w-[313px] lg:h-[224px] lg:w-[500px]">
+            <img src={herocontent} alt="" />
+          </div>
+        </section>
 
         <motion.div
           className="w-full bg-[#252526]"
