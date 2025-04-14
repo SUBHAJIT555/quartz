@@ -31,12 +31,12 @@ const Footer = () => {
           <ul className="space-y-3 text-sm font-Text">
             {[
               { label: "About Us", href: "/about-us" },
-              { label: "Services", href: "/Services" },
-              { label: "Education", href: "/FinancialEducation" },
-              { label: "Remittance", href: "/Remittance" },
-              { label: "Planning", href: "/Planning" },
-              { label: "Insights", href: "/Insights" },
-              { label: "Contact Us", href: "/ContactUs" },
+              { label: "Services", href: "/services" },
+              { label: "Education", href: "/financial-education" },
+              { label: "Remittance", href: "/remittance" },
+              { label: "Planning", href: "/planning" },
+              { label: "Insights", href: "/insights" },
+              { label: "Contact Us", href: "/contact-us" },
             ].map((item) => (
               <li key={item.href}>
                 <a

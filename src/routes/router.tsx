@@ -14,7 +14,6 @@ import TermsAndConditions from "../pages/TermsAndCondition";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import CookiePolicy from "../pages/CookiePolicy";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -26,28 +25,28 @@ export const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "Services",
+        path: "services",
         element: <Services />,
       },
       {
-        path: "FinancialEducation",
+        path: "financial-education",
         element: <FinancialEducation />,
       },
       {
-        path: "Remittance",
+        path: "remittance",
         element: <Remittance />,
       },
       {
-        path: "Planning",
+        path: "planning",
         element: <Planning />,
       },
       {
-        path: "Insights",
+        path: "insights",
         element: <Insights />,
       },
 
       {
-        path: "ContactUs",
+        path: "contact-us",
         element: <ContactUs />,
       },
       {
@@ -60,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "CookiePolicy",
-        element: <CookiePolicy />
+        element: <CookiePolicy />,
       },
       {
         path: "*",
