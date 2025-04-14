@@ -1,7 +1,9 @@
 import herocontent from "../assets/images/homeImages/homeHeroContent.webp";
-import herovideo from "../assets/images/homeImages/heroVideo.mp4";
+import herovideo from "../assets/images/homeImages/heroVideo.webm";
+
 
 const Hero = () => {
+  
   return (
     <section className="relative h-screen w-full ">
       {/* Background Video */}
