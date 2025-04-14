@@ -15,8 +15,14 @@ const Hero = () => {
         playsInline
         poster={herocontent}
       >
-        <source src="/assets/videos/heroVideo.webm" type="video/webm" />
-        <source src="/assets/videos/heroVideo.mp4" type="video/mp4" />
+        <source
+          src="../assets/images/homeImages/heroVideo.webm"
+          type="video/webm"
+        />
+        <source
+          src="../assets/images/homeImages/heroVideo.mp4"
+          type="video/mp4"
+        />
         Your browser does not support the video tag.
       </video>
 
