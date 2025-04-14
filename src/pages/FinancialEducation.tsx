@@ -45,7 +45,9 @@ const FinancialEducation = () => {
   const [status, setStatus] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -302,12 +304,12 @@ const FinancialEducation = () => {
             <div className="w-1/2 h-px bg-white mb-4"></div>
             <p className="font-Text text-white/80 text-lg leading-relaxed">
               Get skilled in the tools professionals use to trade and invest.
-              Gain hands-on experience with platforms like MetaTrader, TradingView,
-              and Bloomberg Terminal.
+              Gain hands-on experience with platforms like MetaTrader,
+              TradingView, and Bloomberg Terminal.
             </p>
             <p className="font-Text text-white/80 text-lg leading-relaxed mt-4">
-              From execution to portfolio tracking and technical analysis,
-              this training equips you to navigate markets like a pro.
+              From execution to portfolio tracking and technical analysis, this
+              training equips you to navigate markets like a pro.
             </p>
           </div>
         </div>
@@ -404,10 +406,14 @@ const FinancialEducation = () => {
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-white/10 text-white border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-300 hover:bg-primary hover:text-white"
               >
-                <option className="text-black">Investor Training Programs</option>
+                <option className="text-black">
+                  Investor Training Programs
+                </option>
                 <option className="text-black">Trading Workshops</option>
                 <option className="text-black">Live Seminars</option>
-                <option className="text-black">Platform & Tools Training</option>
+                <option className="text-black">
+                  Platform & Tools Training
+                </option>
               </select>
             </div>
 
