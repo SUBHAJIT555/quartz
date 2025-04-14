@@ -34,7 +34,9 @@ const ContactUs = () => {
 
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -54,7 +56,13 @@ const ContactUs = () => {
       const result = await response.json();
       if (result.status === "success") {
         setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", phone: "", message: "", formType: "contact" });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          formType: "contact",
+        });
       } else {
         setStatus("Failed: " + result.message);
       }

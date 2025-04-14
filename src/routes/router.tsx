@@ -3,7 +3,7 @@ import { MainLayout } from "../layouts/MainLayout";
 
 import Home from "../pages/Home";
 import AboutUs from "../pages/AboutUs";
-import ContactUs from "../pages/ContactUs";
+
 import FinancialEducation from "../pages/FinancialEducation";
 import Services from "../pages/Services";
 import Remittance from "../pages/Remittance";
@@ -13,6 +13,7 @@ import Planning from "../pages/Planning";
 import TermsAndConditions from "../pages/TermsAndCondition";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import CookiePolicy from "../pages/CookiePolicy";
+import ContactUs from "../pages/ContactUs";
 
 export const router = createBrowserRouter([
   {
