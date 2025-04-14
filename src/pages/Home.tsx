@@ -396,7 +396,7 @@ const Home: React.FC = () => {
               for you. Take the first step toward your financial future.
             </p>
 
-            <Link to="/ContactUs">
+            <Link to="/contact-us">
               <Button className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden">
                 <span className="inline-block transition-all duration-300 group-hover:pr-6">
                   Schedule a Consultation

@@ -34,7 +34,9 @@ const ContactUs = () => {
 
   const [status, setStatus] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -43,7 +45,7 @@ const ContactUs = () => {
     setStatus("Sending...");
 
     try {
-      const response = await fetch("https://qf-advisory.com/mailer.php", {
+      const response = await fetch("http://localhost:3000/api/v1/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -54,7 +56,13 @@ const ContactUs = () => {
       const result = await response.json();
       if (result.status === "success") {
         setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", phone: "", message: "", formType: "contact" });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          formType: "contact",
+        });
       } else {
         setStatus("Failed: " + result.message);
       }
