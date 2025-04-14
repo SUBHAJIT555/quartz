@@ -7,7 +7,7 @@ import who from "../assets/images/homeImages/who-we-are.jpg";
 import why from "../assets/images/homeImages/why_choose_us.jpg";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-// import Preloader from "../components/ui/Preloader";
+import Preloader from "../components/ui/Preloader";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 100 },
