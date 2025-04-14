@@ -37,12 +37,12 @@ const Navbar = () => {
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about-us" },
-    { name: "Services", href: "/Services" },
-    { name: "Education", href: "/FinancialEducation" },
-    { name: "Remittance", href: "/Remittance" },
-    { name: "Planning", href: "/Planning" },
-    { name: "Insights", href: "/Insights" },
-    { name: "Contact", href: "/ContactUs" },
+    { name: "Services", href: "/services" },
+    { name: "Education", href: "/financial-education" },
+    { name: "Remittance", href: "/remittance" },
+    { name: "Planning", href: "/planning" },
+    { name: "Insights", href: "/insights" },
+    { name: "Contact", href: "/contact-us" },
   ];
 
   return (

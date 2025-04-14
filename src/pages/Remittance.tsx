@@ -1,9 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Button from "../components/ui/Button";
-import { ArrowUpRight,  ArrowUp } from "lucide-react";
+import { ArrowUpRight, ArrowUp } from "lucide-react";
 import Footer from "../components/Footer";
-
 
 import remittanceHero from "../assets/images/remittance/Remittance_img.webp";
 import investment from "../assets/images/remittance/Invest_Internationally_The_Right_Way_01.webp";
@@ -146,7 +145,7 @@ const Remittance: React.FC = () => {
             for you. Take the first step toward your financial future.
           </p>
 
-          <Link to="/ContactUs">
+          <Link to="/contact-us">
             <Button className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden">
               <span className="inline-block transition-all duration-300 group-hover:pr-6">
                 Schedule a Consultation
