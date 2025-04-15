@@ -69,10 +69,10 @@ const Insights: React.FC = () => {
           <span className="font-Signature text-primary text-7xl">Growth</span>
         </h2>
         <p className="text-white/80 font-Text text-lg md:text-xl text-center pb-16 max-w-4xl mx-auto">
-          Explore the impressive journey of globally recognized companies that
-          have delivered exponential returns over time. These charts showcase
-          real-life case studies of how well-researched, long-term investments
-          can create significant wealth.
+          Explore the phenomenal rise of globally renowned companies that have
+          generated substantial long-term returns. These charts showcase
+          real-world examples of how disciplined, long-term investing can result
+          in significant wealth creation.
         </p>
       </motion.div>
 
@@ -102,29 +102,14 @@ const Insights: React.FC = () => {
               symbol: "NASDAQ:TSLA",
             },
             {
-              name: "Infosys",
-              desc: "Pioneering Indian IT services with global growth",
-              symbol: "BSE:INFY",
+              name: "Microsoft Corporation",
+              desc: "Dominant force in enterprise software, cloud computing, and AI innovation",
+              symbol: "NASDAQ:MSFT",
             },
             {
-              name: "Reliance",
-              desc: "Diversified into telecom, retail, and energy",
-              symbol: "BSE:RELIANCE",
-            },
-            {
-              name: "Nestle",
-              desc: "Consistent long-term performance in FMCG",
-              symbol: "BSE:NESTLEIND",
-            },
-            {
-              name: "Unilever",
-              desc: "Global brand leadership and stability",
-              symbol: "BSE:HINDUNILVR",
-            },
-            {
-              name: "Google (Alphabet)",
-              desc: "Dominating digital advertising and AI",
-              symbol: "NASDAQ:GOOGL",
+              name: "NVIDIA Corporation",
+              desc: "Pioneering GPU technology, now driving advancements in AI, gaming, and autonomous vehicles",
+              symbol: "NASDAQ:NVDA",
             },
           ].map((company, index) => (
             <motion.div
@@ -166,16 +151,14 @@ const Insights: React.FC = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         <h2 className="text-white font-Heading text-3xl md:text-[2vw] pt-16 pb-4 text-center tracking-wide">
-          Digital Gold in the Making?&nbsp;
+          Global Index Performance &nbsp;
           <span className="font-Signature text-primary text-7xl">
-            — Cryptocurrencies
+            — Barometers of Economic Strength
           </span>
         </h2>
         <p className="text-white/80 font-Text text-lg md:text-xl text-center pb-16 max-w-4xl mx-auto">
-          Explore the impressive journey of globally recognized companies that
-          have delivered exponential returns over time. These charts showcase
-          real-life case studies of how well-researched, long-term investments
-          can create significant wealth.
+          Understanding the movement of major indices provides a macro
+          perspective on market performance and investor sentiment.
         </p>
       </motion.div>
 
@@ -189,19 +172,29 @@ const Insights: React.FC = () => {
         <div className="space-y-32 max-w-7xl mx-auto">
           {[
             {
-              name: "Bitcoin (BTC) ",
-              desc: "From a few rupees to lakhs — early investors turned millionaires",
-              symbol: "CRYPTO:BTCUSD",
+              name: "S&P 500",
+              desc: "Benchmark of the top 500 publicly traded companies in the U.S.",
+              symbol: "OANDA:SPX500USD",
             },
             {
-              name: "Ethereum (ETH)",
-              desc: "Powering decentralized finance and smart contracts",
-              symbol: "CRYPTO:ETHUSD",
+              name: "Dow Jones Industrial Average",
+              desc: "Tracks 30 large U.S. companies with consistent performance",
+              symbol: "OANDA:US30USD",
             },
             {
-              name: "Solana, Cardano, and Others",
-              desc: "Emerging altcoins with technology-driven growth",
-              symbol: "CRYPTO:SOLUSD",
+              name: "NASDAQ Composite",
+              desc: "Technology-heavy index reflecting innovation-led growth",
+              symbol: "NASDAQ:IXIC",
+            },
+            {
+              name: "Hang Seng Index",
+              desc: "Key indicator of Hong Kong’s market health and China-linked companies",
+              symbol: "INDEX:HSI",
+            },
+            {
+              name: "Nikkei 225",
+              desc: ": A bellwether for Japan’s economy and industrial giants",
+              symbol: "OANDA:JP225USD",
             },
           ].map((company, index) => (
             <motion.div
@@ -250,12 +243,12 @@ const Insights: React.FC = () => {
         <h2 className="text-white font-Heading text-3xl md:text-[2vw] pt-16 pb-4 text-center tracking-wide">
           Commodity Price Movements &nbsp;
           <span className="font-Signature text-primary text-7xl">
-            — Historical & Strategic
+            — Historical & Strategic Trends
           </span>
         </h2>
         <p className="text-white/80 font-Text text-lg md:text-xl text-center pb-16 max-w-4xl mx-auto">
-          Commodities continue to be a cornerstone of diversified investment
-          portfolios. Here’s how prices of key commodities have evolved
+          Commodities remain a vital pillar of portfolio diversification. Here’s
+          how key commodities have evolved over time
         </p>
       </motion.div>
 
@@ -269,6 +262,11 @@ const Insights: React.FC = () => {
         <div className="space-y-32 max-w-7xl mx-auto">
           {[
             {
+              name: "WTI Crude Oil",
+              desc: "Volatility driven by global politics and demand-supply cycles",
+              symbol: "OANDA:WTICOUSD",
+            },
+            {
               name: "Gold",
               desc: "A timeless hedge against inflation and economic uncertainty",
               symbol: "TVC:GOLD",
@@ -277,11 +275,6 @@ const Insights: React.FC = () => {
               name: "Silver",
               desc: "Industrial utility and store of value",
               symbol: "TVC:SILVER",
-            },
-            {
-              name: "Crude Oil",
-              desc: "Volatility driven by global politics and demand-supply cycles",
-              symbol: "TVC:USOIL",
             },
           ].map((company, index) => (
             <motion.div
