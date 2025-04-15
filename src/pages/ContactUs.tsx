@@ -54,7 +54,7 @@ const ContactUs = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/v1/email/send-email",
+        "https://quartz-server-six.vercel.app/api/v1/email/send-email",
         {
           method: "POST",
           headers: {
@@ -192,10 +192,10 @@ const ContactUs = () => {
                   type="tel"
                   {...register("phone", {
                     required: "Phone number is required",
-                    pattern: {
-                      value: /^\+971\d{9}$/,
-                      message: "Invalid phone number",
-                    },
+                    // pattern: {
+                    //   value: /^\+971\d{9}$/,
+                    //   message: "Invalid phone number",
+                    // },
                   })}
                   maxLength={13}
                   placeholder="+971-50-123-4567"
