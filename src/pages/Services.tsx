@@ -93,8 +93,8 @@ const Services = () => {
         />
         <div className="relative z-10 flex items-center justify-end h-full bg-black/40 px-10">
           <div className="text-white text-right max-w-2xl pr-10">
-            <h1 className="font-Heading text-8xl">Our Services</h1>
-            <p className="font-Text text-2xl mt-4">
+            <h1 className="font-Heading text-5xl md:text-8xl">Our Services</h1>
+            <p className="font-Text text-xl md:text-2xl mt-4">
               Discover what we offer to elevate your{" "}
               <span className="font-Signature text-primary text-7xl">
                 experience

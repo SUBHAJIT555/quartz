@@ -64,7 +64,7 @@ const FinancialEducation = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/v1/email/send-email",
+        "https://quartz-server-six.vercel.app/api/v1/email/send-email",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -406,10 +406,10 @@ const FinancialEducation = () => {
               <input
                 {...register("phone", {
                   required: "Phone number is required",
-                  pattern: {
-                    value: /^\+971\d{9}$/,
-                    message: "Invalid phone number",
-                  },
+                  // pattern: {
+                  //   value: /^\+971\d{9}$/,
+                  //   message: "Invalid phone number",
+                  // },
                 })}
                 type="tel"
                 maxLength={13}
@@ -475,14 +475,16 @@ const FinancialEducation = () => {
                 className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden"
               >
                 {loading ? (
-                  <div className="flex items-center gap-2">
-                    <p>Submitting</p>
-                    <div className="flex items-center gap-1">
-                      <span className="dot-animation"></span>
-                      <span className="dot-animation"></span>
-                      <span className="dot-animation"></span>
+                  <>
+                    <div className="flex items-center gap-2">
+                      <p>Submiting</p>
+                      <div className="flex items-center gap-1">
+                        <span className="dot-animation"></span>
+                        <span className="dot-animation"></span>
+                        <span className="dot-animation"></span>
+                      </div>
                     </div>
-                  </div>
+                  </>
                 ) : (
                   <>
                     <span className="inline-block transition-all duration-300 group-hover:pr-6">
