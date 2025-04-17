@@ -6,6 +6,7 @@ import { ArrowUpRight, ArrowUp } from "lucide-react";
 
 import insightHero from "../assets/images/insight/Insights_img_01.webp";
 import TradingViewWidget from "../components/TradingViewWidget";
+import { Link } from "react-router-dom";
 
 const Insights: React.FC = () => {
   const ref = useRef(null);
@@ -340,16 +341,18 @@ const Insights: React.FC = () => {
             your journey in global markets today.
           </p>
 
-          <Button className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden">
-            <span className="inline-block transition-all duration-300 group-hover:pr-6">
-              Schedule a Consultation
-            </span>
+          <Link to="/contact-us">
+            <Button className="bg-white text-[#957F63] font-semibold px-8 py-3 rounded-full shadow-md hover:bg-white/90 transition duration-300 mt-10 group relative overflow-hidden">
+              <span className="inline-block transition-all duration-300 group-hover:pr-6">
+                Schedule a Consultation
+              </span>
 
-            <ArrowUpRight
-              className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-              size={16}
-            />
-          </Button>
+              <ArrowUpRight
+                className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                size={16}
+              />
+            </Button>
+          </Link>
         </motion.div>
       </motion.div>
       <div
