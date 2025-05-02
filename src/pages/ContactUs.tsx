@@ -275,29 +275,74 @@ const ContactUs = () => {
             <div className="space-y-6 text-white/90 text-base font-Text">
               <div className="w-[70px] h-1 bg-white"></div>
 
-              <div className="mb-8 rounded-xl overflow-hidden border border-white/10">
-                <iframe
-                  title="Company Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.0032220917786!2d73.8966674!3d18.4732608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ea6f0b41a257%3A0xcef2546d5e1b3c1!2sClover%20Highlands!5e0!3m2!1sen!2sin!4v1712822630993!5m2!1sen!2sin"
-                  width="100%"
-                  height="200"
-                  allowFullScreen
-                  loading="lazy"
-                  className="w-full h-56"
-                  style={{ border: 0 }}
-                ></iframe>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {/* India Office Label and Map */}
+                <div>
+                  <h4 className="text-white text-lg font-semibold mb-3">
+                    📍 India Office
+                  </h4>
+                  <div className="rounded-xl overflow-hidden border border-white/10">
+                    <iframe
+                      title="India Office Location"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.8210800104534!2d73.83639019999999!3d18.544117700000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf71556ec967%3A0x7c939420e054c8fa!2sVB%20Capitol!5e0!3m2!1sen!2sin!4v1714648301384!5m2!1sen!2sin"
+                      width="100%"
+                      height="200"
+                      allowFullScreen
+                      loading="lazy"
+                      className="w-full h-56"
+                      style={{ border: 0 }}
+                    ></iframe>
+                  </div>
+                </div>
+
+                {/* UAE Office Label and Map */}
+                <div>
+                  <h4 className="text-white text-lg font-semibold mb-3">
+                    📍 UAE Office
+                  </h4>
+                  <div className="rounded-xl overflow-hidden border border-white/10">
+                    <iframe
+                      title="UAE Office Location"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.044042648687!2d55.45180097536265!3d25.343845726693188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef5f4b1373cf273%3A0x72fae609f1c7c22!2sSharjah%20Media%20City%20(SHAMS)!5e0!3m2!1sen!2sae!4v1714643481461!5m2!1sen!2sae"
+                      width="100%"
+                      height="200"
+                      allowFullScreen
+                      loading="lazy"
+                      className="w-full h-56"
+                      style={{ border: 0 }}
+                    ></iframe>
+                  </div>
+                </div>
               </div>
 
+              {/* India Address */}
               <div className="flex items-start gap-4">
                 <MapPin className="text-white mt-1" size={20} />
                 <div>
-                  <h4 className="text-white font-semibold mb-1">Address</h4>
+                  <h4 className="text-white font-semibold mb-1">
+                    India Office
+                  </h4>
                   <p className="text-white/80">
-                    Clover Highlands, NIBM Road,
+                    702, 705, VB Capitol, Range Hill Rd,
                     <br />
-                    Pune, Maharashtra
+                    Opp. Hotel Symphony, Bhoslenagar,
                     <br />
-                    India 411048.
+                    Shivajinagar, Pune, Maharashtra 411020.
+                  </p>
+                </div>
+              </div>
+
+              {/* UAE Address */}
+              <div className="flex items-start gap-4">
+                <MapPin className="text-white mt-1" size={20} />
+                <div>
+                  <h4 className="text-white font-semibold mb-1">UAE Office</h4>
+                  <p className="text-white/80">
+                    Infinity Trades LLC,
+                    <br />
+                    Sharjah Media City,
+                    <br />
+                    United Arab Emirates.
                   </p>
                 </div>
               </div>
@@ -315,7 +360,7 @@ const ContactUs = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
+              {/* <div className="flex items-start gap-4">
                 <Phone className="text-white mt-1" size={20} />
                 <div>
                   <h4 className="text-white font-semibold mb-1">Phone</h4>
@@ -326,7 +371,7 @@ const ContactUs = () => {
                     +91 866 8373 752
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

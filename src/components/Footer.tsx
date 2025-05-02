@@ -92,14 +92,14 @@ const Footer = () => {
                 advisory@qf-advisory.com
               </a>
             </li>
-            <li>
+            {/* <li>
               <a
                 href="tel:+918668373752"
                 className="hover:text-[#957F63] transition font-Text text-xl"
               >
                 +91 866 8373 752
               </a>
-            </li>
+            </li> */}
           </ul>
 
           <h3 className="text-lg font-semibold text-white mt-8 mb-4 font-Text">
