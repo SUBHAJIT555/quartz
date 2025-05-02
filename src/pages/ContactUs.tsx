@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin, Phone, ArrowUp } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, ArrowUp } from "lucide-react";
 import Footer from "../components/Footer";
 import Button from "../components/ui/Button";
 import contactHero from "../assets/images/insight/Contact_img.webp";
