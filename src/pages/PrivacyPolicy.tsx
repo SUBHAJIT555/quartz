@@ -81,9 +81,8 @@ const privacyData = [
     title: "9. Contact Us",
     content: [
       "If you have any questions or concerns about this Privacy Policy or how your information is handled, please reach out to us at:",
-      "Email: [Insert Email Address]",
-      "Phone: [Insert Phone Number]",
-      "Address: [Insert Physical Address]",
+      "Email: advisory@qf-advisory.com",
+      
     ],
   },
 ];

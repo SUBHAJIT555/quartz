@@ -85,9 +85,7 @@ const TermsAndConditions: React.FC = () => {
       title: "10. Contact Information",
       content: [
         "If you have any questions or concerns regarding these Terms and Conditions, please contact us at:",
-        "Email: [Insert Email Address]",
-        "Phone: [Insert Phone Number]",
-        "Address: [Insert Physical Address]",
+        "Email: advisory@qf-advisory.com",
       ],
     },
   ];

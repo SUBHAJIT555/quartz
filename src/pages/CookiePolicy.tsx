@@ -68,9 +68,8 @@ const CookiePolicy: React.FC = () => {
       title: "7. Contact Us",
       content: [
         "If you have any questions about our use of cookies or this policy, please contact us:",
-        "Email: [Insert Email Address]",
-        "Phone: [Insert Phone Number]",
-        "Address: [Insert Physical Address]",
+        "Email: advisory@qf-advisory.com",
+
       ],
     },
   ];
