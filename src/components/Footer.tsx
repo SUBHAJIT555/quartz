@@ -1,4 +1,4 @@
-import { ArrowUpRight, Facebook, Instagram, Youtube } from "lucide-react";
+import { ArrowUpRight, Facebook, Instagram } from "lucide-react";
 import FooterLogo from "../assets/images/logo/QuartzLight.webp";
 import { Link } from "react-router-dom";
 
@@ -109,15 +109,11 @@ const Footer = () => {
             {[
               {
                 icon: Facebook,
-                href: "https://www.facebook.com/profile.php?id=61574824925807",
+                href: "https://www.facebook.com/profile.php?id=61578375064590&rdid=3ZYmIVcDXGMCobIe&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18qKdvkrKh%2F",
               },
               {
                 icon: Instagram,
                 href: "https://www.instagram.com/qfinanceadvisory/",
-              },
-              {
-                icon: Youtube,
-                href: "https://www.youtube.com/@QuartzFinancialAdvisoryService",
               },
             ].map(({ icon: Icon, href }, i) => (
               <a
@@ -133,9 +129,14 @@ const Footer = () => {
       </div>
 
       {/* Bottom Line */}
-      <div className="mt-16 border-t border-white/10 pt-6 text-center text-white/50">
-        © {new Date().getFullYear()}{" "}
-        <a href="">Quartz Financial Advisory Services</a> | All rights reserved.
+      <div className="mt-16 border-t border-white/10 pt-6 text-center">
+        <p className="text-white/70 font-Text text-sm tracking-wide mb-3">
+          Office DUBAI. MUMBAI. CASABLANCA.
+        </p>
+        <p className="text-white/50">
+          © {new Date().getFullYear()}{" "}
+          <a href="">Quartz Financial Advisory Services</a> | All rights reserved.
+        </p>
       </div>
     </footer>
   );
